@@ -58,10 +58,10 @@ def analyze_trends_and_generate_post_idea_gpt(articles, openai_api_key):
         if response.choices and response.choices[0].message.content:
             ideas = parse_ideas(response.choices[0].message.content)
 
-            # Запис ідей у JSON файл
-            with open('post_ideas.json', 'w', encoding='utf-8') as f:
-                json.dump(ideas, f, ensure_ascii=False, indent=4)
-                print("Ідеї для постів збережено у JSON файл.")
+            # # Запис ідей у JSON файл
+            # with open('post_ideas.json', 'w', encoding='utf-8') as f:
+            #     json.dump(ideas, f, ensure_ascii=False, indent=4)
+            #     print("Ідеї для постів збережено у JSON файл.")
 
             return ideas
         else:
@@ -95,7 +95,7 @@ def get_news_articles(news_api_key, search_queries=["AI", "Artificial Itelligenc
     return all_results
 
 def main():
-    openai_api_key = "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"
+    openai_api_key = "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"
     news_api_key = "4c5096179734485aba9279b5a9183788"
 
     st.title("Iдеї по новинам про штучний інтелект")
