@@ -95,7 +95,7 @@ def get_news_articles(news_api_key, search_queries=["AI", "Artificial Itelligenc
     return all_results
 
 def main():
-    openai_api_key = "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"
+    openai_api_key = "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"
     news_api_key = "4c5096179734485aba9279b5a9183788"
 
     st.title("Iдеї по новинам про штучний інтелект")
