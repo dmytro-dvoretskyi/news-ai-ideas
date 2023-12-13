@@ -120,7 +120,7 @@ def main():
                             {idea_dict["inform"]}
                             {idea_dict["links"]}
                         """)
-                    st.json(idea, expanded=False)
+                        st.json(idea, expanded=False)
             st.success(f"Згенеровано {len(post_ideas)} ідеї.")
         else:
             st.success("Немає новин для аналізу.")
