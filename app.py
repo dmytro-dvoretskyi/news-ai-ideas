@@ -95,8 +95,9 @@ def get_news_articles(news_api_key, search_queries=["AI", "Artificial Itelligenc
     return all_results
 
 def main():
-    openai_api_key = "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"
-    news_api_key = "4c5096179734485aba9279b5a9183788"
+    openai_api_key = st.secrets["OPEN_AI"]
+    news_api_key = st.secrets["NEWS"]
+    print(openai_api_key, news_api_key)
 
     st.title("Iдеї по новинам про штучний інтелект")
     text_input = st.text_input("Введіть теми новин які вас цікавлять 👇", placeholder="AI, Artificial Itelligence, Technology")
@@ -109,21 +110,20 @@ def main():
             st.success(f"Отримано {len(articles)} новин.")
             with st.spinner("Генерація ідей для постів..."):
                 post_ideas = analyze_trends_and_generate_post_idea_gpt(articles, openai_api_key)
+                if post_ideas:
+                    for idx, idea in enumerate(post_ideas, start=1):
+                        idea_dict = dict(json.loads(idea))
+                        st.markdown(f"""
+                            ### Ідея {idx}\n
+                            #### {idea_dict["title"]}\n
+                            {idea_dict["content"]}\n
+                            {idea_dict["inform"]}
+                            {idea_dict["links"]}
+                        """)
+                    st.json(idea, expanded=False)
             st.success(f"Згенеровано {len(post_ideas)} ідеї.")
         else:
             st.success("Немає новин для аналізу.")
-
-        if post_ideas:
-            for idx, idea in enumerate(post_ideas, start=1):
-                idea_dict = dict(json.loads(idea))
-                st.markdown(f"""
-                    ### Ідея {idx}\n
-                    #### {idea_dict["title"]}\n
-                    {idea_dict["content"]}\n
-                    {idea_dict["inform"]}
-                    {idea_dict["links"]}
-                """)
-                st.json(idea, expanded=False)
 
         st.button('Rerun')
 
