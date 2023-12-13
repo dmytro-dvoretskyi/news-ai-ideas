@@ -105,7 +105,7 @@ def main():
             articles = get_news_articles(news_api_key, text_input.split(','))
         if articles:
             for article in articles:
-                st.markdown(f"**{article["source"]["name"]}** [{article["title"]}]({article["url"]})")
+                st.markdown(f'**{article["source"]["name"]}** [{article["title"]}]({article["url"]})')
             st.success(f"Отримано {len(articles)} новин.")
             with st.spinner("Генерація ідей для постів..."):
                 post_ideas = analyze_trends_and_generate_post_idea_gpt(articles, openai_api_key)
